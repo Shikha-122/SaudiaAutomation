@@ -1,48 +1,19 @@
-import pytest
-from playwright.sync_api import Page , expect
+from pages.home_page import HomePage
 
-def test_launch_website(page:Page):
-
-    #Launch URl
-    page.goto('https://takeyourseat.saudia.com/', wait_until="domcontentloaded")
-    expect(page).to_have_url('https://takeyourseat.saudia.com/')
-    expect(page).to_have_title('Saudia | Take your seat')
-
-    # Verifying Url
-    # print('Url:', page.url)
-
-def verify_logo(page:Page):
-    logo=page.locator("//a[@class='flex items-center gap-2']")
-    expect(logo).to_be_visible()
-
-def verify_home(page:Page):
-    home= page.locator("//a[text()='Home']")
-    expect(home).to_be_visible()
-
-def verify_news(page:Page):
-    news=page.locator("//a[text()='News']")
-    expect(news).to_be_visible()
-
-def verify_games(page:Page):
-    games=page.locator("//a[text()='Games']")
-    expect(games).to_be_visible()
-
-def verify_competitions(page:Page):
-    competitions=page.locator("//a[text()='Competitions']")
-    expect(competitions).to_be_visible()
-
-def verify_bookflight(page:Page):
-    bookflight=page.locator("//a[text()='Book flights']")
-    expect(bookflight).to_be_visible()
-
-def verify_english_button(page:Page):
-    eng=page.locator("//button[@class='btn text-white bg-saudiaGreen']")
-    expect(eng).to_be_visible()
-
-def verify_arabic_button(page:Page):
-    ar=page.locator("//button[@class='btn text-green-700']")
-    expect(ar).to_be_visible()
-
-
-
-
+def test_launch_website(page):
+    home_page=HomePage(page)
+    home_page.open_homepage()
+    home_page.verify_homepage_url()
+    home_page.verify_homepage_title()
+    home_page.verify_book_flight()
+    home_page.click_book_flight()
+    home_page.verify_news()
+    home_page.click_news()
+    home_page.verify_games()
+    home_page.click_games()
+    home_page.verify_competitions()
+    home_page.click_competitions()
+    home_page.verify_english()
+    home_page.verify_arabic()
+    home_page.click_arabic()
+    home_page.verify_arabic_games()
