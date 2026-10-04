@@ -5,6 +5,6 @@ import pytest
 def browser_context_args(browser_context_args):
     return {
         **browser_context_args,
-        "viewport": {"width": 1440, "height": 900},
+        "viewport": None,
         "locale": "en-US",
     }

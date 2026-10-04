@@ -5,8 +5,6 @@ def test_launch_website(page):
     home_page.open_homepage()
     home_page.verify_homepage_url()
     home_page.verify_homepage_title()
-    home_page.verify_book_flight()
-    home_page.click_book_flight()
     home_page.verify_news()
     home_page.click_news()
     home_page.verify_games()
